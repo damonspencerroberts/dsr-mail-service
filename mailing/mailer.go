@@ -24,10 +24,10 @@ func SendEmail(data types.EmailRequest) {
 	body := fmt.Sprintf(`
 		<html>
 			<body>
-				<h1>You have a new email!</h1>
+				<h3>You have a new email!</h3>
 				<h4>From: %s %s</h4>
 				<h4>Email: %s</h4>
-				<h4>Message: %s</h4>
+				<p>Message: %s</p>
 			</body>
 		</html>`, data.FirstName, data.LastName, data.ToEmail, data.Message)
 
