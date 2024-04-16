@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
+	"strings"
 )
 
 func HandleJSONResponse(w http.ResponseWriter, statusCode int, data interface{}) {
@@ -47,4 +49,27 @@ func decodeAndValidateRequest(r *http.Request, v interface{}) error {
 	}
 
 	return nil
+}
+
+func validateToken(r *http.Request) error {
+	authHeader := r.Header.Get("Authorization")
+	if authHeader == "" {
+		return fmt.Errorf("authorization header is missing")
+	}
+	parts := strings.Split(authHeader, " ")
+	if len(parts) != 2 || parts[0] != "Bearer" {
+		return fmt.Errorf("invalid authorization format")
+	}
+
+	token := parts[1]
+
+	if !isValidToken(token) {
+		return fmt.Errorf("invalid token")
+	}
+
+	return nil
+}
+
+func isValidToken(token string) bool {
+	return token == os.Getenv("API_TOKEN")
 }
