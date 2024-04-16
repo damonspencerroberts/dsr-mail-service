@@ -19,7 +19,7 @@ func SendEmail(data types.EmailRequest) {
 	smtpHost := "smtp.gmail.com"
 	smtpPort := "587"
 
-	subject := "Subject: Test email from Go!\n"
+	subject := fmt.Sprintf("Subject: %s\n", data.Subject)
 	mime := "MIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";\n\n"
 	body := fmt.Sprintf(`
 		<html>
