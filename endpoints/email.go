@@ -31,12 +31,8 @@ func PostEmailRequest() {
 			return
 		}
 
-		body, err := PostHandler(w, r)
+		PostHandler(w, r)
 
-		if err != nil {
-			return
-		}
-
-		HandleJSONResponse(w, http.StatusOK, map[string]string{"body": string(body)})
+		HandleJSONResponse(w, http.StatusOK, requestBody)
 	})
 }

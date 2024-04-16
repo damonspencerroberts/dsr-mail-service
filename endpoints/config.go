@@ -3,7 +3,6 @@ package endpoints
 import (
 	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
 )
 
@@ -35,13 +34,7 @@ func PostHandler(w http.ResponseWriter, r *http.Request) ([]byte, error) {
 		return nil, fmt.Errorf("method not allowed")
 	}
 
-	body, err := io.ReadAll(r.Body)
-	if err != nil {
-		http.Error(w, "Error reading request body", http.StatusBadRequest)
-		return nil, err
-	}
-
-	return body, nil
+	return nil, nil
 }
 
 func decodeAndValidateRequest(r *http.Request, v interface{}) error {
