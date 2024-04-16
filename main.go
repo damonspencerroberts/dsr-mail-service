@@ -2,7 +2,8 @@ package main
 
 import (
 	"dsr-mail-service/config"
-	"dsr-mail-service/mailing"
+	"dsr-mail-service/endpoints"
+	"net/http"
 )
 
 // func handleRequests() {
@@ -12,5 +13,8 @@ import (
 
 func main() {
 	config.LoadConfig()
-	mailing.SendEmail()
+	// mailing.SendEmail()
+	endpoints.HandleRequests()
+
+	http.ListenAndServe(":8080", nil)
 }
