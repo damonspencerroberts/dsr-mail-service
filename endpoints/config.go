@@ -43,3 +43,15 @@ func PostHandler(w http.ResponseWriter, r *http.Request) ([]byte, error) {
 
 	return body, nil
 }
+
+func decodeAndValidateRequest(r *http.Request, v interface{}) error {
+	if err := json.NewDecoder(r.Body).Decode(v); err != nil {
+		return fmt.Errorf("error decoding request body: %s", err)
+	}
+
+	if err := validate.Struct(v); err != nil {
+		return fmt.Errorf("invalid request body: %s", err)
+	}
+
+	return nil
+}
