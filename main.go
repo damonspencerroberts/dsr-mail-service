@@ -3,7 +3,9 @@ package main
 import (
 	"dsr-mail-service/config"
 	"dsr-mail-service/endpoints"
+	"fmt"
 	"net/http"
+	"os"
 )
 
 // func handleRequests() {
@@ -16,5 +18,10 @@ func main() {
 	// mailing.SendEmail()
 	endpoints.HandleRequests()
 
-	http.ListenAndServe(":8080", nil)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	http.ListenAndServe(fmt.Sprintf(":%s", port), nil)
 }
