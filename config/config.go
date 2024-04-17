@@ -1,8 +1,6 @@
 package config
 
 import (
-	"os"
-
 	"github.com/joho/godotenv"
 )
 
