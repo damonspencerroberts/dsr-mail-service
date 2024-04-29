@@ -2,5 +2,5 @@ package endpoints
 
 func HandleRequests() {
 	GetHome()
-	PostEmailRequest()
+	PostEmail()
 }
