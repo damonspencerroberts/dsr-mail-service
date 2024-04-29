@@ -13,6 +13,7 @@ var validate = validator.New()
 
 func PostEmailRequest() {
 	http.HandleFunc("/send_email", func(w http.ResponseWriter, r *http.Request) {
+		EnableCors(&w)
 		err := validateToken(r)
 		if err != nil {
 			errorJSON := []byte(fmt.Sprintf(`{"error": {"message": "%s"}}`, err.Error()))

@@ -29,7 +29,7 @@ func SendEmail(data types.EmailRequest) {
 				<h4>Email: %s</h4>
 				<p>Message: %s</p>
 			</body>
-		</html>`, data.FirstName, data.LastName, data.ToEmail, data.Message)
+		</html>`, data.FirstName, data.LastName, data.FromEmail, data.Message)
 
 	message := []byte(subject + mime + body)
 
